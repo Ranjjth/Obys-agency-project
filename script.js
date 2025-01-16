@@ -1,4 +1,5 @@
-var tl = gsap.timeline();
+function loadingAnimation() {
+    var tl = gsap.timeline();
 
 tl.from("#percentage",{
     opacity: 0,
@@ -7,8 +8,7 @@ tl.from("#percentage",{
         setInterval(()=>{
             if(count < 100){
                 document.querySelector("#percentage h5").innerHTML = count;
-            console.log(count);
-            count++;
+                count++;
             }
             else{
                 clearInterval();
@@ -16,7 +16,7 @@ tl.from("#percentage",{
             }
         },30);
     },
-    delay: 1,
+    delay: 0.5,
 })
 
 tl.from(".line h1,.line h2", {
@@ -42,4 +42,24 @@ tl.from("#page1",{
     ease:Power4
 })
 
+tl.from(".hero h1",{
+    y:120,
+    stagger:.2,
+    duration:.5
+})
+}
 
+loadingAnimation();
+
+function cursorAnimation() {
+    document.addEventListener('mousemove',(e) => {
+        gsap.to('#cursor',{
+            x:e.clientX,
+            y:e.clientY,
+        })
+    })
+    
+    Shery.makeMagnet("#nav-pt2 h4");
+}
+
+cursorAnimation();
